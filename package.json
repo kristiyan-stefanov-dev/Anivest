@@ -3,40 +3,33 @@
   "author": "Ixartz (https://github.com/ixartz)",
   "type": "module",
   "scripts": {
-  "dev": "run-p db-server:file db:migrate:local dev:*",
-
-  "dev:next": "next dev",
-  "dev:spotlight": "npx @spotlightjs/spotlight",
-
-  "db-server:file": "pglite-server -m 100 --db=local.db",
-  "db-server:memory": "pglite-server -m 100",
-
-  "db:migrate:local": "dotenv -c -- drizzle-kit migrate",
-  "db:migrate": "dotenv -c -- drizzle-kit migrate",
-  "db:generate": "drizzle-kit generate",
-  "db:studio": "drizzle-kit studio",
-
-  "build:next": "next build",
-  "build-local": "run-p db-server:memory build:next --race",
-  "build": "run-s db:migrate build:next",
-  "start": "next start",
-  "build-stats": "cross-env ANALYZE=true npm run build",
-
-  "clean": "rimraf .next out coverage",
-  "lint": "ultracite check --type-aware --type-check",
-  "lint:fix": "ultracite fix --type-aware --type-check",
-  "check:types": "tsc --noEmit --pretty",
-  "check:deps": "knip",
-  "check:i18n": "i18n-check -l src/locales -s en -u src -f next-intl",
-
-  "commit": "commit",
-  "test": "vitest run",
-  "test:e2e": "playwright test",
-
-  "storybook": "storybook dev -p 6006",
-  "storybook:test": "vitest run --config .storybook/vitest.config.ts",
-  "build-storybook": "storybook build"
-},
+    "dev": "run-p db-server:file db:migrate:local dev:*",
+    "dev:next": "next dev",
+    "dev:spotlight": "npx @spotlightjs/spotlight",
+    "db-server:file": "pglite-server -m 100 --db=local.db",
+    "db-server:memory": "pglite-server -m 100",
+    "db:migrate:local": "dotenv -c -- drizzle-kit migrate",
+    "db:migrate": "dotenv -c -- drizzle-kit migrate",
+    "db:generate": "drizzle-kit generate",
+    "db:studio": "drizzle-kit studio",
+    "build:next": "next build",
+    "build-local": "run-p db-server:memory build:next --race",
+    "build": "run-s db:migrate build:next",
+    "start": "next start",
+    "build-stats": "cross-env ANALYZE=true npm run build",
+    "clean": "rimraf .next out coverage",
+    "lint": "ultracite check --type-aware --type-check",
+    "lint:fix": "ultracite fix --type-aware --type-check",
+    "check:types": "tsc --noEmit --pretty",
+    "check:deps": "knip",
+    "check:i18n": "i18n-check -l src/locales -s en -u src -f next-intl",
+    "commit": "commit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "storybook": "storybook dev -p 6006",
+    "storybook:test": "vitest run --config .storybook/vitest.config.ts",
+    "build-storybook": "storybook build"
+  },
   "dependencies": {
     "@arcjet/next": "^1.4.0",
     "@clerk/localizations": "^4.6.8",
@@ -117,11 +110,6 @@
   "engines": {
     "node": ">=24"
   },
-  "postcss": {
-    "plugins": {
-      "@tailwindcss/postcss": {}
-    }
-  },
   "allowScripts": {
     "esbuild@0.27.7": true,
     "esbuild@0.18.20": true,
@@ -133,5 +121,10 @@
     "@swc/core@1.15.33": true,
     "lefthook@2.1.8": true,
     "sharp@0.34.5": true
+  },
+  "postcss": {
+    "plugins": {
+      "@tailwindcss/postcss": {}
+    }
   }
 }
