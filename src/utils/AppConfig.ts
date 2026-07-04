@@ -8,7 +8,7 @@ const localePrefix: LocalePrefixMode = 'as-needed';
 export const AppConfig = {
   name: 'Anivest',
   i18n: {
-    locales: ['en', 'csCZ'],
+    locales: ['en', 'cs'],
     defaultLocale: 'en',
     localePrefix,
   },
@@ -16,7 +16,7 @@ export const AppConfig = {
 
 const supportedLocales: Record<string, LocalizationResource> = {
   en: enUS,
-  cz: csCZ,
+  cs: csCZ,
 };
 
 export const ClerkLocalizations = {
