@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Sponsors } from '@/components/Sponsors';
-
 type IndexPageProps = {
   params: Promise<{ locale: string }>;
 };
@@ -128,7 +126,6 @@ export default async function Index(props: IndexPageProps) {
         integrate seamlessly with the boilerplate, and we recommend trying them out.
       </p>
       <h2 className="mt-5 text-2xl font-bold">{t('sponsors_title')}</h2>
-      <Sponsors />
     </>
   );
 }
