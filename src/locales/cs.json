@@ -4,6 +4,8 @@
     "about_link": "About",
     "counter_link": "Counter",
     "portfolio_link": "Portfolio",
+    "projects_link": "Projects",
+    "studio_link": "Studio",
     "sign_in_link": "Sign in",
     "sign_up_link": "Sign up"
   },
@@ -72,5 +74,97 @@
   },
   "LocaleSwitcher": {
     "change_language": "Change language"
+  },
+  "Home": {
+    "meta_title": "Anivest — Podpořte své anime",
+    "meta_description": "Podpořte originální anime projekty nezávislých studií na Anivest.",
+    "hero_title": "Financujte anime, které chcete sledovat",
+    "hero_subtitle": "Anivest propojuje nezávislá anime studia s podporovateli prostřednictvím crowdfundingu s odměnami.",
+    "browse_button": "Procházet projekty",
+    "featured_title": "Doporučené projekty"
+  },
+  "Projects": {
+    "meta_title": "Procházet projekty",
+    "meta_description": "Procházejte anime crowdfundingové projekty podle kategorie na Anivest.",
+    "title": "Procházet projekty",
+    "empty": "V této kategorii zatím nejsou žádné projekty."
+  },
+  "ProjectDetail": {
+    "meta_title": "Projekt",
+    "about_funds": "Jak se využijí prostředky",
+    "tiers_title": "Podpořte tento projekt",
+    "by_studio": "Od {name}"
+  },
+  "Studio": {
+    "become_title": "Stát se studiem",
+    "become_subtitle": "Vytvořte profil studia a spusťte vlastní crowdfundingové projekty.",
+    "label_name": "Název studia",
+    "label_slug": "Slug studia",
+    "label_description": "Popis",
+    "label_logo": "URL loga",
+    "label_website": "Webové stránky",
+    "button_become": "Vytvořit studio",
+    "error_name": "Zadejte platný název studia.",
+    "error_slug": "Použijte malý slug s pomlčkami.",
+    "error_generic": "Studio se nepodařilo vytvořit.",
+    "new_project": "Nový projekt",
+    "no_projects": "Zatím jste nevytvořili žádné projekty.",
+    "manage": "Spravovat",
+    "create_project_title": "Vytvořit projekt",
+    "edit_project_subtitle": "Upravte svůj projekt a spravujte jeho úrovně a rozdělení prostředků.",
+    "edit_details": "Podrobnosti projektu",
+    "manage_tiers": "Úrovně",
+    "manage_ledgers": "Rozdělení prostředků"
+  },
+  "ProjectForm": {
+    "label_title": "Název",
+    "label_slug": "Slug",
+    "label_tagline": "Slogan",
+    "label_description": "Popis",
+    "label_cover": "URL obrázku",
+    "label_category": "Kategorie",
+    "label_goal": "Cílová částka",
+    "label_ends_at": "Končí dne",
+    "label_featured": "Zvýraznit na domovské stránce",
+    "button_create": "Vytvořit projekt",
+    "button_update": "Aktualizovat projekt",
+    "error_generic": "Projekt se nepodařilo uložit."
+  },
+  "TierManager": {
+    "edit": "Upravit",
+    "delete": "Smazat",
+    "empty": "Zatím žádné úrovně.",
+    "heading_new": "Přidat úroveň",
+    "heading_edit": "Upravit úroveň",
+    "placeholder_title": "Název úrovně",
+    "placeholder_description": "Popis úrovně",
+    "placeholder_price": "Cena",
+    "placeholder_limit": "Limit (prázdné = neomezené)",
+    "placeholder_reward": "Popis odměny",
+    "add": "Přidat úroveň",
+    "save": "Uložit",
+    "cancel": "Zrušit"
+  },
+  "LedgerManager": {
+    "edit": "Upravit",
+    "delete": "Smazat",
+    "empty": "Zatím žádné položky.",
+    "heading_new": "Přidat položku",
+    "heading_edit": "Upravit položku",
+    "placeholder_label": "Název položky",
+    "placeholder_amount": "Částka",
+    "placeholder_note": "Poznámka",
+    "add": "Přidat položku",
+    "save": "Uložit",
+    "cancel": "Zrušit"
+  },
+  "Pledge": {
+    "sign_in_to_back": "Přihlaste se pro podporu projektu",
+    "label_name": "Vaše jméno",
+    "back_this": "Podpořit",
+    "backing": "Podporuji...",
+    "success": "Děkujeme za podporu tohoto projektu!",
+    "sold_out": "Vyprodáno",
+    "error_generic": "Pledge se nepodařilo dokončit."
   }
 }
