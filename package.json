@@ -11,6 +11,7 @@
     "db:migrate:local": "dotenv -c -- drizzle-kit migrate",
     "db:migrate": "dotenv -c -- drizzle-kit migrate",
     "db:generate": "drizzle-kit generate",
+    "db:seed": "tsx scripts/seed.ts",
     "db:studio": "drizzle-kit studio",
     "build:next": "next build",
     "build-local": "run-p db-server:memory build:next --race",

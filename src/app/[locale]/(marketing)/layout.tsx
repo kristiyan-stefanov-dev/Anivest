@@ -1,8 +1,9 @@
+import { currentUser } from '@clerk/nextjs/server';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { DemoBanner } from '@/components/DemoBanner';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { Link } from '@/libs/I18nNavigation';
-import { BaseTemplate } from '@/templates/BaseTemplate';
+import { WideTemplate } from '@/templates/WideTemplate';
 
 export default async function Layout(props: {
   children: React.ReactNode;
@@ -14,11 +15,12 @@ export default async function Layout(props: {
     locale,
     namespace: 'RootLayout',
   });
+  const user = await currentUser();
 
   return (
     <>
       <DemoBanner />
-      <BaseTemplate
+      <WideTemplate
         leftNav={
           <>
             <li>
@@ -39,6 +41,11 @@ export default async function Layout(props: {
             <li>
               <Link href="/portfolio/" className="border-none text-gray-700 hover:text-gray-900">
                 {t('portfolio_link')}
+              </Link>
+            </li>
+            <li>
+              <Link href="/projects/" className="border-none text-gray-700 hover:text-gray-900">
+                {t('projects_link')}
               </Link>
             </li>
             <li>
@@ -65,14 +72,22 @@ export default async function Layout(props: {
               </Link>
             </li>
 
+            {user && (
+              <li>
+                <Link href="/studio/" className="border-none text-gray-700 hover:text-gray-900">
+                  {t('studio_link')}
+                </Link>
+              </li>
+            )}
+
             <li>
               <LocaleSwitcher />
             </li>
           </>
         }
       >
-        <div className="py-5 text-xl [&_p]:my-6">{props.children}</div>
-      </BaseTemplate>
+        <div className="py-5">{props.children}</div>
+      </WideTemplate>
     </>
   );
 }

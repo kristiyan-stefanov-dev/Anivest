@@ -1,9 +1,11 @@
+import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata, Viewport } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { DemoBadge } from '@/components/DemoBadge';
 import { routing } from '@/libs/I18nRouting';
+import { ClerkLocalizations } from '@/utils/AppConfig';
 import '@/styles/global.css';
 
 export const metadata: Metadata = {
@@ -52,14 +54,26 @@ export default async function RootLayout(props: {
 
   setRequestLocale(locale);
 
+  const clerkLocale =
+    ClerkLocalizations.supportedLocales[locale] ?? ClerkLocalizations.defaultLocale;
+
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider>
-          {props.children}
+        <ClerkProvider
+          appearance={{
+            cssLayerName: 'clerk',
+          }}
+          localization={clerkLocale}
+          signInUrl="/sign-in"
+          signUpUrl="/sign-up"
+          signInFallbackRedirectUrl="/dashboard"
+          signUpFallbackRedirectUrl="/dashboard"
+          afterSignOutUrl="/"
+        >
+          <NextIntlClientProvider>{props.children}</NextIntlClientProvider>
+        </ClerkProvider>
 
-          <DemoBadge />
-        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -4,6 +4,8 @@
     "about_link": "About",
     "counter_link": "Counter",
     "portfolio_link": "Portfolio",
+    "projects_link": "Projects",
+    "studio_link": "Studio",
     "sign_in_link": "Sign in",
     "sign_up_link": "Sign up"
   },
@@ -72,5 +74,97 @@
   },
   "LocaleSwitcher": {
     "change_language": "Change language"
+  },
+  "Home": {
+    "meta_title": "Anivest — Crowdfund your anime",
+    "meta_description": "Back original anime projects from independent studios on Anivest.",
+    "hero_title": "Fund the anime you want to watch",
+    "hero_subtitle": "Anivest connects independent anime studios with backers through reward-based crowdfunding.",
+    "browse_button": "Browse projects",
+    "featured_title": "Featured projects"
+  },
+  "Projects": {
+    "meta_title": "Browse projects",
+    "meta_description": "Browse anime crowdfunding projects by category on Anivest.",
+    "title": "Browse projects",
+    "empty": "No projects found in this category yet."
+  },
+  "ProjectDetail": {
+    "meta_title": "Project",
+    "about_funds": "How funds are used",
+    "tiers_title": "Back this project",
+    "by_studio": "By {name}"
+  },
+  "Studio": {
+    "become_title": "Become a studio",
+    "become_subtitle": "Create a studio profile to launch your own crowdfunding projects.",
+    "label_name": "Studio name",
+    "label_slug": "Studio slug",
+    "label_description": "Description",
+    "label_logo": "Logo URL",
+    "label_website": "Website",
+    "button_become": "Create studio",
+    "error_name": "Please enter a valid studio name.",
+    "error_slug": "Use a lowercase slug with hyphens.",
+    "error_generic": "Could not create the studio.",
+    "new_project": "New project",
+    "no_projects": "You have not created any projects yet.",
+    "manage": "Manage",
+    "create_project_title": "Create a project",
+    "edit_project_subtitle": "Update your project and manage its tiers and fund allocation.",
+    "edit_details": "Project details",
+    "manage_tiers": "Tiers",
+    "manage_ledgers": "Fund allocation"
+  },
+  "ProjectForm": {
+    "label_title": "Title",
+    "label_slug": "Slug",
+    "label_tagline": "Tagline",
+    "label_description": "Description",
+    "label_cover": "Cover image URL",
+    "label_category": "Category",
+    "label_goal": "Goal amount",
+    "label_ends_at": "Ends at",
+    "label_featured": "Feature on home page",
+    "button_create": "Create project",
+    "button_update": "Update project",
+    "error_generic": "Could not save the project."
+  },
+  "TierManager": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "empty": "No tiers yet.",
+    "heading_new": "Add a tier",
+    "heading_edit": "Edit tier",
+    "placeholder_title": "Tier title",
+    "placeholder_description": "Tier description",
+    "placeholder_price": "Price",
+    "placeholder_limit": "Limit (blank = unlimited)",
+    "placeholder_reward": "Reward description",
+    "add": "Add tier",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "LedgerManager": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "empty": "No fund items yet.",
+    "heading_new": "Add a fund item",
+    "heading_edit": "Edit fund item",
+    "placeholder_label": "Item label",
+    "placeholder_amount": "Amount",
+    "placeholder_note": "Note",
+    "add": "Add item",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "Pledge": {
+    "sign_in_to_back": "Sign in to back this project",
+    "label_name": "Your name",
+    "back_this": "Back this",
+    "backing": "Backing...",
+    "success": "Thank you for backing this project!",
+    "sold_out": "Sold out",
+    "error_generic": "Could not complete your pledge."
   }
 }
