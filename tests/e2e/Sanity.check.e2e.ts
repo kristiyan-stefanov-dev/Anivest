@@ -14,7 +14,7 @@ test.describe('Sanity', () => {
 
       await expect(
         page.getByRole('heading', {
-          name: 'Boilerplate Code for Your Next.js Project with Tailwind CSS',
+          name: 'Reward-based crowdfunding for independent anime studios',
         }),
       ).toBeVisible();
     });
@@ -26,7 +26,9 @@ test.describe('Sanity', () => {
 
       await expect(page).toHaveURL(/about$/u);
 
-      await expect(page.getByText('Welcome to our About page', { exact: false })).toBeVisible();
+      await expect(
+        page.getByText('Anivest is a reward-based crowdfunding platform', { exact: false }),
+      ).toBeVisible();
     });
 
     test('should navigate to the portfolio page', async ({ page }) => {

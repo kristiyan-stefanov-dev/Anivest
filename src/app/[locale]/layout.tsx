@@ -72,7 +72,6 @@ export default async function RootLayout(props: {
         >
           <NextIntlClientProvider>{props.children}</NextIntlClientProvider>
         </ClerkProvider>
-
       </body>
     </html>
   );

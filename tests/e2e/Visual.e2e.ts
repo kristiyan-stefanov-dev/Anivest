@@ -7,7 +7,7 @@ test.describe('Visual testing', () => {
 
       await expect(
         page.getByRole('heading', {
-          name: 'Boilerplate Code for Your Next.js Project with Tailwind CSS',
+          name: 'Reward-based crowdfunding for independent anime studios',
         }),
       ).toBeVisible();
 
@@ -25,7 +25,9 @@ test.describe('Visual testing', () => {
     test('should take screenshot of the about page', async ({ page }, testInfo) => {
       await page.goto('/about');
 
-      await expect(page.getByText('Welcome to our About page!')).toBeVisible();
+      await expect(
+        page.getByText('Anivest is a reward-based crowdfunding platform', { exact: false }),
+      ).toBeVisible();
 
       await takeSnapshot(page, testInfo);
     });
@@ -43,7 +45,7 @@ test.describe('Visual testing', () => {
 
       await expect(
         page.getByRole('heading', {
-          name: 'Code de démarrage pour Next.js avec Tailwind CSS',
+          name: 'Crowdfunding s odměnami pro nezávislá anime studia',
         }),
       ).toBeVisible();
 
