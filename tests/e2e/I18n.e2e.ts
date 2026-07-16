@@ -9,7 +9,7 @@ test.describe('I18n', () => {
 
       await expect(
         page.getByRole('heading', {
-          name: 'Boilerplate Code for Your Next.js Project with Tailwind CSS',
+          name: 'Reward-based crowdfunding for independent anime studios',
         }),
       ).toBeVisible();
 
@@ -17,7 +17,7 @@ test.describe('I18n', () => {
 
       await expect(
         page.getByRole('heading', {
-          name: 'Code de démarrage pour Next.js avec Tailwind CSS',
+          name: 'Crowdfunding s odměnami pro nezávislá anime studia',
         }),
       ).toBeVisible();
     });

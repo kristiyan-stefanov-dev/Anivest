@@ -34,14 +34,6 @@ export const WideTemplate = (props: {
           {t.rich('footer_text', {
             year: new Date().getFullYear(),
             name: AppConfig.name,
-            author: () => (
-              <a
-                href="https://nextjs-boilerplate.com"
-                className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-              >
-                Next.js Boilerplate
-              </a>
-            ),
           })}
         </footer>
       </div>

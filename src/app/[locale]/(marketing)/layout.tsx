@@ -1,6 +1,5 @@
 import { currentUser } from '@clerk/nextjs/server';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { DemoBanner } from '@/components/DemoBanner';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { Link } from '@/libs/I18nNavigation';
 import { WideTemplate } from '@/templates/WideTemplate';
@@ -19,7 +18,6 @@ export default async function Layout(props: {
 
   return (
     <>
-      <DemoBanner />
       <WideTemplate
         leftNav={
           <>
@@ -47,14 +45,6 @@ export default async function Layout(props: {
               <Link href="/projects/" className="border-none text-gray-700 hover:text-gray-900">
                 {t('projects_link')}
               </Link>
-            </li>
-            <li>
-              <a
-                className="border-none text-gray-700 hover:text-gray-900"
-                href="https://github.com/ixartz/Next-js-Boilerplate"
-              >
-                GitHub
-              </a>
             </li>
           </>
         }
