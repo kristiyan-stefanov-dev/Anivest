@@ -66,14 +66,26 @@ export const ProjectForm = (props: {
     }
   });
 
+  const fieldError = (name: keyof typeof form.formState.errors) =>
+    form.formState.errors[name]?.message;
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      {form.formState.errors.slug && (
+        <p className="rounded-sm bg-red-50 px-3 py-2 text-sm text-red-600">
+          {form.formState.errors.slug.message}
+        </p>
+      )}
+
       <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">
         {t('label_title')}
         <input
           {...form.register('title')}
           className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
         />
+        {fieldError('title') && (
+          <span className="text-xs font-normal text-red-500">{fieldError('title')}</span>
+        )}
       </label>
 
       <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">
@@ -83,6 +95,9 @@ export const ProjectForm = (props: {
           placeholder="my-project"
           className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
         />
+        {fieldError('slug') && (
+          <span className="text-xs font-normal text-red-500">{fieldError('slug')}</span>
+        )}
       </label>
 
       <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">
@@ -91,6 +106,9 @@ export const ProjectForm = (props: {
           {...form.register('tagline')}
           className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
         />
+        {fieldError('tagline') && (
+          <span className="text-xs font-normal text-red-500">{fieldError('tagline')}</span>
+        )}
       </label>
 
       <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">
@@ -100,6 +118,9 @@ export const ProjectForm = (props: {
           rows={5}
           className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
         />
+        {fieldError('description') && (
+          <span className="text-xs font-normal text-red-500">{fieldError('description')}</span>
+        )}
       </label>
 
       <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">
@@ -109,6 +130,9 @@ export const ProjectForm = (props: {
           placeholder="https://..."
           className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
         />
+        {fieldError('coverImageUrl') && (
+          <span className="text-xs font-normal text-red-500">{fieldError('coverImageUrl')}</span>
+        )}
       </label>
 
       <div className="flex gap-4">
@@ -133,6 +157,9 @@ export const ProjectForm = (props: {
             {...form.register('goalAmount', { valueAsNumber: true })}
             className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
           />
+          {fieldError('goalAmount') && (
+            <span className="text-xs font-normal text-red-500">{fieldError('goalAmount')}</span>
+          )}
         </label>
       </div>
 
@@ -143,6 +170,9 @@ export const ProjectForm = (props: {
           {...form.register('endsAt')}
           className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
         />
+        {fieldError('endsAt') && (
+          <span className="text-xs font-normal text-red-500">{fieldError('endsAt')}</span>
+        )}
       </label>
 
       <label className="flex items-center gap-2 text-sm font-medium text-gray-700">

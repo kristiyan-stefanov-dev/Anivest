@@ -8,8 +8,8 @@ export const StudioValidation = z.object({
     .max(128)
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u, 'Use a lowercase slug with hyphens'),
   description: z.string().max(2000).default(''),
-  logoUrl: z.url().max(512).optional().default(''),
-  website: z.url().max(512).optional().default(''),
+  logoUrl: z.url().max(512).or(z.literal('')).optional().default(''),
+  website: z.url().max(512).or(z.literal('')).optional().default(''),
 });
 
 export const ProjectValidation = z.object({
@@ -21,14 +21,14 @@ export const ProjectValidation = z.object({
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u, 'Use a lowercase slug with hyphens'),
   tagline: z.string().max(200).default(''),
   description: z.string().max(10_000).default(''),
-  coverImageUrl: z.url().max(512).optional().default(''),
+  coverImageUrl: z.url().max(512).or(z.literal('')).optional().default(''),
   category: z
     .enum(['popular', 'isekai', 'drama', 'action', 'fantasy', 'slice-of-life', 'mecha', 'romance'])
     .default('popular'),
   goalAmount: z.number().int().min(0).default(0),
   currency: z.string().length(3).default('USD'),
   featured: z.boolean().default(false),
-  endsAt: z.iso.datetime().optional().nullable(),
+  endsAt: z.iso.datetime({ local: true }).or(z.literal('')).optional().nullable(),
 });
 
 export const TierValidation = z.object({

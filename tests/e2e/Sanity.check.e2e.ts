@@ -30,15 +30,5 @@ test.describe('Sanity', () => {
         page.getByText('Anivest is a reward-based crowdfunding platform', { exact: false }),
       ).toBeVisible();
     });
-
-    test('should navigate to the portfolio page', async ({ page }) => {
-      await page.goto('/');
-
-      await page.getByRole('link', { name: 'Portfolio' }).click();
-
-      await expect(page).toHaveURL(/portfolio$/u);
-
-      await expect(page.locator('main').getByRole('link', { name: /^Portfolio/u })).toHaveCount(6);
-    });
   });
 });

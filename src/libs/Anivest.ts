@@ -1,4 +1,4 @@
-import { and, desc, eq, inArray, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, inArray, sql } from 'drizzle-orm';
 import { db } from '@/libs/DB';
 import {
   categories,
@@ -9,12 +9,28 @@ import {
   studios,
   tiers,
 } from '@/models/Schema';
-import type { Category, Project, ProjectWithStudio, Studio, TierWithStats } from '@/models/Schema';
+import type {
+  Category,
+  Pledge,
+  Project,
+  ProjectWithStudio,
+  Studio,
+  TierWithStats,
+} from '@/models/Schema';
 
 export const getStudioByClerkId = async (clerkUserId: string) =>
   await db.query.studios.findFirst({
     where: eq(studios.clerkUserId, clerkUserId),
   });
+
+export const listStudios = async (options: { limit?: number } = {}) => {
+  const rows = await db.query.studios.findMany({
+    orderBy: [asc(studios.name)],
+    limit: options.limit,
+  });
+
+  return rows;
+};
 
 const getProjectStats = async (projectIds: number[]) => {
   if (projectIds.length === 0) {
@@ -296,6 +312,70 @@ export const createPledge = async (props: {
     .where(eq(tiers.id, tier.id));
 
   return pledge;
+};
+
+/** A project a backer has pledged to, with their pledges and total pledged amount. */
+export type BackedProject = ProjectWithStudio & {
+  pledges: Pledge[];
+  totalAmount: number;
+};
+
+/** A backer of a project, with the pledged tier title. */
+export type ProjectBacker = Pledge & {
+  tierTitle: string;
+};
+
+/** Projects a backer has confirmed pledges on, grouped with their pledges.
+ *
+ * @param clerkUserId - Clerk id of the backer.
+ * @returns Projects the backer pledged to, with their pledges and total.
+ */
+export const getBackedProjectsByBacker = async (clerkUserId: string): Promise<BackedProject[]> => {
+  const rows = await db
+    .select({
+      project: projects,
+      pledge: pledges,
+    })
+    .from(pledges)
+    .innerJoin(projects, eq(pledges.projectId, projects.id))
+    .where(and(eq(pledges.backerClerkUserId, clerkUserId), eq(pledges.status, 'confirmed')))
+    .orderBy(desc(pledges.createdAt));
+
+  const byProject = new Map<number, { project: Project; pledges: Pledge[] }>();
+
+  for (const { project, pledge } of rows) {
+    const entry = byProject.get(project.id) ?? { project, pledges: [] };
+    entry.pledges.push(pledge);
+    byProject.set(project.id, entry);
+  }
+
+  return await Promise.all(
+    [...byProject.values()].map(async ({ project, pledges: projectPledges }) => {
+      const withStats = await withStudioAndStats(project);
+      const totalAmount = projectPledges.reduce((sum, pledge) => sum + pledge.amount, 0);
+
+      return { ...withStats, pledges: projectPledges, totalAmount };
+    }),
+  );
+};
+
+/** Confirmed backers of a project, joined with their tier title, newest first.
+ *
+ * @param projectId - Id of the project.
+ * @returns Backers with their pledged tier title.
+ */
+export const getBackersForProject = async (projectId: number): Promise<ProjectBacker[]> => {
+  const rows = await db
+    .select({
+      pledge: pledges,
+      tierTitle: tiers.title,
+    })
+    .from(pledges)
+    .innerJoin(tiers, eq(pledges.tierId, tiers.id))
+    .where(and(eq(pledges.projectId, projectId), eq(pledges.status, 'confirmed')))
+    .orderBy(desc(pledges.createdAt));
+
+  return rows.map(({ pledge, tierTitle }) => ({ ...pledge, tierTitle }));
 };
 
 export type { Studio, ProjectWithStudio };

@@ -5,16 +5,16 @@ import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { Link } from '@/libs/I18nNavigation';
 import { BaseTemplate } from '@/templates/BaseTemplate';
 
-type DashboardLayoutProps = {
+type StudioLayoutProps = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata(props: DashboardLayoutProps): Promise<Metadata> {
+export async function generateMetadata(props: StudioLayoutProps): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: 'DashboardLayout',
+    namespace: 'StudioLayout',
   });
 
   return {
@@ -23,12 +23,12 @@ export async function generateMetadata(props: DashboardLayoutProps): Promise<Met
   };
 }
 
-export default async function DashboardLayout(props: DashboardLayoutProps) {
+export default async function StudioLayout(props: StudioLayoutProps) {
   const { locale } = await props.params;
   setRequestLocale(locale);
   const t = await getTranslations({
     locale,
-    namespace: 'DashboardLayout',
+    namespace: 'StudioLayout',
   });
 
   return (
@@ -41,24 +41,13 @@ export default async function DashboardLayout(props: DashboardLayoutProps) {
             </Link>
           </li>
           <li>
+            <Link href="/studio/" className="border-none text-gray-700 hover:text-gray-900">
+              {t('studio_link')}
+            </Link>
+          </li>
+          <li>
             <Link href="/dashboard/" className="border-none text-gray-700 hover:text-gray-900">
               {t('dashboard_link')}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/dashboard/user-profile/"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              {t('user_profile_link')}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/dashboard/backed/"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              {t('backed_link')}
             </Link>
           </li>
         </>

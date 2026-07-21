@@ -1,6 +1,6 @@
 import { currentUser } from '@clerk/nextjs/server';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { ProgressBar } from '@/components/ProgressBar';
 import { StudioRegisterForm } from '@/components/StudioRegisterForm';
 import { getProjectsByStudio, getStudioByClerkId } from '@/libs/Anivest';
@@ -66,7 +66,7 @@ export default async function StudioPage(props: StudioPageProps) {
   const user = await currentUser();
 
   if (!user) {
-    notFound();
+    redirect(`/${locale}/sign-in/`);
   }
 
   const studio = await getStudioByClerkId(user.id);

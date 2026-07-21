@@ -10,6 +10,7 @@ import {
   getStudioByClerkId,
   getTiersForProject,
 } from '@/libs/Anivest';
+import { Link } from '@/libs/I18nNavigation';
 
 type EditProjectPageProps = {
   params: Promise<{ locale: string; id: string }>;
@@ -56,6 +57,13 @@ export default async function EditProjectPage(props: EditProjectPageProps) {
     <div className="mx-auto max-w-3xl py-8">
       <h1 className="mb-2 text-3xl font-bold text-gray-900">{project.title}</h1>
       <p className="mb-6 text-gray-600">{t('edit_project_subtitle')}</p>
+
+      <Link
+        href={`/studio/projects/${project.id}/backers/`}
+        className="mb-6 inline-block rounded-sm border border-gray-300 px-3 py-1 text-sm hover:bg-gray-100"
+      >
+        {t('view_backers')}
+      </Link>
 
       <section className="mb-10">
         <h2 className="mb-4 text-xl font-semibold text-gray-900">{t('edit_details')}</h2>

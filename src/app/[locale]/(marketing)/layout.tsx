@@ -32,35 +32,43 @@ export default async function Layout(props: {
               </Link>
             </li>
             <li>
-              <Link href="/counter/" className="border-none text-gray-700 hover:text-gray-900">
-                {t('counter_link')}
-              </Link>
-            </li>
-            <li>
-              <Link href="/portfolio/" className="border-none text-gray-700 hover:text-gray-900">
-                {t('portfolio_link')}
-              </Link>
-            </li>
-            <li>
               <Link href="/projects/" className="border-none text-gray-700 hover:text-gray-900">
                 {t('projects_link')}
+              </Link>
+            </li>
+            <li>
+              <Link href="/studios/" className="border-none text-gray-700 hover:text-gray-900">
+                {t('studios_link')}
               </Link>
             </li>
           </>
         }
         rightNav={
           <>
-            <li>
-              <Link href="/sign-in/" className="border-none text-gray-700 hover:text-gray-900">
-                {t('sign_in_link')}
-              </Link>
-            </li>
+            {user ? (
+              <li>
+                <Link
+                  href="/dashboard/user-profile/"
+                  className="border-none text-gray-700 hover:text-gray-900"
+                >
+                  {t('profile_link')}
+                </Link>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link href="/sign-in/" className="border-none text-gray-700 hover:text-gray-900">
+                    {t('sign_in_link')}
+                  </Link>
+                </li>
 
-            <li>
-              <Link href="/sign-up/" className="border-none text-gray-700 hover:text-gray-900">
-                {t('sign_up_link')}
-              </Link>
-            </li>
+                <li>
+                  <Link href="/sign-up/" className="border-none text-gray-700 hover:text-gray-900">
+                    {t('sign_up_link')}
+                  </Link>
+                </li>
+              </>
+            )}
 
             {user && (
               <li>

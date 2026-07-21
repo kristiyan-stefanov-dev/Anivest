@@ -1,6 +1,6 @@
 import { currentUser } from '@clerk/nextjs/server';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { ProjectForm } from '@/components/ProjectForm';
 import { getStudioByClerkId } from '@/libs/Anivest';
 
@@ -19,13 +19,13 @@ export default async function NewProjectPage(props: NewProjectPageProps) {
   const user = await currentUser();
 
   if (!user) {
-    notFound();
+    redirect(`/${locale}/sign-in/`);
   }
 
   const studio = await getStudioByClerkId(user.id);
 
   if (!studio) {
-    notFound();
+    redirect(`/${locale}/studio/`);
   }
 
   return (

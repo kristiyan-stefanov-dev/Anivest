@@ -14,28 +14,12 @@ test.describe('Visual testing', () => {
       await takeSnapshot(page, testInfo);
     });
 
-    test('should take screenshot of the portfolio page', async ({ page }, testInfo) => {
-      await page.goto('/portfolio');
-
-      await expect(page.getByText('Welcome to my portfolio page!')).toBeVisible();
-
-      await takeSnapshot(page, testInfo);
-    });
-
     test('should take screenshot of the about page', async ({ page }, testInfo) => {
       await page.goto('/about');
 
       await expect(
         page.getByText('Anivest is a reward-based crowdfunding platform', { exact: false }),
       ).toBeVisible();
-
-      await takeSnapshot(page, testInfo);
-    });
-
-    test('should take screenshot of the portfolio details page', async ({ page }, testInfo) => {
-      await page.goto('/portfolio/2');
-
-      await expect(page.getByText('Created a set of promotional')).toBeVisible();
 
       await takeSnapshot(page, testInfo);
     });
