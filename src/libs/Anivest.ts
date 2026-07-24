@@ -5,6 +5,7 @@ import {
   ledgers,
   pledges,
   projectBlocks,
+  projectImages,
   projects,
   studios,
   tiers,
@@ -13,6 +14,7 @@ import type {
   Category,
   Pledge,
   Project,
+  ProjectImage,
   ProjectWithStudio,
   Studio,
   TierWithStats,
@@ -132,6 +134,17 @@ export const getBlocksForProject = async (projectId: number) =>
   await db.query.projectBlocks.findMany({
     where: eq(projectBlocks.projectId, projectId),
     orderBy: [projectBlocks.displayOrder],
+  });
+
+export const getImagesForProject = async (projectId: number): Promise<ProjectImage[]> =>
+  await db.query.projectImages.findMany({
+    where: eq(projectImages.projectId, projectId),
+    orderBy: [projectImages.displayOrder],
+  });
+
+export const getTierById = async (tierId: number) =>
+  await db.query.tiers.findFirst({
+    where: eq(tiers.id, tierId),
   });
 
 export const getProjectsByStudio = async (studioId: number) => {
@@ -278,6 +291,9 @@ export const createPledge = async (props: {
   tierId: number;
   backerClerkUserId: string;
   backerName: string;
+  email?: string;
+  address?: string;
+  notes?: string;
 }) => {
   const tier = await db.query.tiers.findFirst({
     where: eq(tiers.id, props.tierId),
@@ -298,6 +314,9 @@ export const createPledge = async (props: {
       projectId: tier.projectId,
       backerClerkUserId: props.backerClerkUserId,
       backerName: props.backerName,
+      email: props.email ?? '',
+      address: props.address ?? '',
+      notes: props.notes ?? '',
       amount: tier.price,
       currency: tier.currency,
       reward: tier.reward,
