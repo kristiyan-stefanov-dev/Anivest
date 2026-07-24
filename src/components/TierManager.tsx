@@ -23,6 +23,8 @@ export const TierManager = (props: { projectId: number; tiers: TierWithStats[] }
       currency: 'USD',
       limitedQuantity: null as number | null,
       reward: '',
+      imageUrl: '',
+      deliveryDate: '',
       displayOrder: 0,
       active: true,
     },
@@ -37,6 +39,8 @@ export const TierManager = (props: { projectId: number; tiers: TierWithStats[] }
       currency: tier.currency,
       limitedQuantity: tier.limitedQuantity,
       reward: tier.reward,
+      imageUrl: tier.imageUrl,
+      deliveryDate: tier.deliveryDate,
       displayOrder: tier.displayOrder,
       active: tier.active,
     });
@@ -143,6 +147,16 @@ export const TierManager = (props: { projectId: number; tiers: TierWithStats[] }
           {...form.register('reward')}
           placeholder={t('placeholder_reward')}
           rows={2}
+          className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
+        />
+        <input
+          {...form.register('imageUrl')}
+          placeholder={t('placeholder_image_url')}
+          className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
+        />
+        <input
+          {...form.register('deliveryDate')}
+          placeholder={t('placeholder_delivery_date')}
           className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
         />
 
