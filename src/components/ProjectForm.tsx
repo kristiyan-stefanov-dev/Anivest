@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from '@/libs/I18nNavigation';
 import { extractErrorMessage } from '@/utils/format';
@@ -21,6 +22,7 @@ const CATEGORIES = [
 export const ProjectForm = (props: {
   projectId?: number;
   defaultValues?: Partial<Record<string, unknown>>;
+  galleryImageUrls?: string[];
 }) => {
   const t = useTranslations('ProjectForm');
   const router = useRouter();
@@ -43,10 +45,16 @@ export const ProjectForm = (props: {
     },
   });
 
+  const [galleryUrls, setGalleryUrls] = useState((props.galleryImageUrls ?? []).join('\n'));
+
   const handleSubmit = form.handleSubmit(async (data) => {
     const payload = {
       ...data,
       endsAt: data.endsAt ? new Date(data.endsAt).toISOString() : null,
+      galleryImages: galleryUrls
+        .split('\n')
+        .map((url) => url.trim())
+        .filter((url) => url.length > 0),
     };
 
     const response = await fetch('/api/projects', {
@@ -133,6 +141,21 @@ export const ProjectForm = (props: {
         {fieldError('coverImageUrl') && (
           <span className="text-xs font-normal text-red-500">{fieldError('coverImageUrl')}</span>
         )}
+      </label>
+
+      <label className="flex flex-col gap-1 text-sm font-medium text-gray-700">
+        {t('label_gallery')}
+        <textarea
+          value={galleryUrls}
+          onChange={(event) => {
+            setGalleryUrls(event.target.value);
+          }}
+          aria-label={t('label_gallery')}
+          placeholder={t('placeholder_gallery')}
+          rows={3}
+          className="rounded-sm border border-gray-200 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-300 focus:outline-hidden"
+        />
+        <span className="text-xs font-normal text-gray-500">{t('gallery_hint')}</span>
       </label>
 
       <div className="flex gap-4">

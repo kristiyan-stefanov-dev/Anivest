@@ -5,7 +5,7 @@ import * as z from 'zod';
 import { getStudioByClerkId } from '@/libs/Anivest';
 import { db } from '@/libs/DB';
 import { logger } from '@/libs/Logger';
-import { projects } from '@/models/Schema';
+import { projectImages, projects } from '@/models/Schema';
 import { ProjectValidation } from '@/validations/AnivestValidation';
 
 const parseEndsAt = (value: string | null | undefined) => {
@@ -16,6 +16,19 @@ const parseEndsAt = (value: string | null | undefined) => {
   const date = new Date(value);
 
   return Number.isNaN(date.getTime()) ? null : date;
+};
+
+const saveGalleryImages = async (projectId: number, urls: string[]) => {
+  await db.delete(projectImages).where(eq(projectImages.projectId, projectId));
+
+  for (const [index, url] of urls.entries()) {
+    await db.insert(projectImages).values({
+      projectId,
+      imageUrl: url,
+      altText: `Gallery image ${index + 1}`,
+      displayOrder: index,
+    });
+  }
 };
 
 export const POST = async (request: Request) => {
@@ -56,6 +69,14 @@ export const POST = async (request: Request) => {
     .returning();
 
   logger.info('Project created');
+
+  const galleryImages: string[] = Array.isArray(json.galleryImages)
+    ? json.galleryImages.filter((url: unknown) => typeof url === 'string')
+    : [];
+
+  if (project && galleryImages.length > 0) {
+    await saveGalleryImages(project.id, galleryImages);
+  }
 
   return NextResponse.json({ project }, { status: 201 });
 };
@@ -98,6 +119,14 @@ export const PATCH = async (request: Request) => {
 
   if (!project) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  }
+
+  const galleryImages: string[] | undefined = Array.isArray(json.galleryImages)
+    ? json.galleryImages.filter((url: unknown) => typeof url === 'string')
+    : undefined;
+
+  if (galleryImages !== undefined) {
+    await saveGalleryImages(project.id, galleryImages);
   }
 
   return NextResponse.json({ project });

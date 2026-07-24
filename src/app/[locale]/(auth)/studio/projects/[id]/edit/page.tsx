@@ -5,6 +5,7 @@ import { LedgerManager } from '@/components/LedgerManager';
 import { ProjectForm } from '@/components/ProjectForm';
 import { TierManager } from '@/components/TierManager';
 import {
+  getImagesForProject,
   getLedgersForProject,
   getProjectById,
   getStudioByClerkId,
@@ -48,9 +49,10 @@ export default async function EditProjectPage(props: EditProjectPageProps) {
     notFound();
   }
 
-  const [tiers, ledgers] = await Promise.all([
+  const [tiers, ledgers, galleryImages] = await Promise.all([
     getTiersForProject(project.id),
     getLedgersForProject(project.id),
+    getImagesForProject(project.id),
   ]);
 
   return (
@@ -81,6 +83,7 @@ export default async function EditProjectPage(props: EditProjectPageProps) {
             featured: project.featured,
             endsAt: project.endsAt ? project.endsAt.toISOString().slice(0, 16) : '',
           }}
+          galleryImageUrls={galleryImages.map((img) => img.imageUrl)}
         />
       </section>
 
