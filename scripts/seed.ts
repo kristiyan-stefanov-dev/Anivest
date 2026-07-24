@@ -9,6 +9,7 @@ import {
   ledgers,
   pledges,
   projectBlocks,
+  projectImages,
   projects,
   studios,
   tiers,
@@ -445,6 +446,7 @@ type SeedProject = {
   tagline: string;
   description: string;
   coverImageUrl: string;
+  galleryImages: string[];
   category: CategorySlug;
   goalAmount: number;
   status: string;
@@ -480,6 +482,12 @@ function buildProject(mal: MalAnime): SeedProject {
     tagline: deriveTagline(mal.synopsis),
     description: mal.synopsis,
     coverImageUrl: mal.image,
+    galleryImages: [
+      `https://picsum.photos/seed/${mal.slug}-1/1920/1080`,
+      `https://picsum.photos/seed/${mal.slug}-2/1920/1080`,
+      `https://picsum.photos/seed/${mal.slug}-3/1920/1080`,
+      `https://picsum.photos/seed/${mal.slug}-4/1920/1080`,
+    ],
     category: mal.category,
     goalAmount,
     status: 'live',
@@ -667,6 +675,16 @@ const seed = async () => {
         type: block.type,
         content: block.content,
         displayOrder: block.displayOrder,
+      });
+    }
+
+    await db.delete(projectImages).where(eq(projectImages.projectId, projectId));
+    for (const [index, imageUrl] of project.galleryImages.entries()) {
+      await db.insert(projectImages).values({
+        projectId,
+        imageUrl,
+        altText: `${project.title} gallery ${index + 1}`,
+        displayOrder: index,
       });
     }
   }
