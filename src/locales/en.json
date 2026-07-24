@@ -66,9 +66,16 @@
   },
   "ProjectDetail": {
     "meta_title": "Project",
+    "about_tab": "About project",
+    "about_title": "About the project",
     "about_funds": "How funds are used",
-    "tiers_title": "Back this project",
-    "by_studio": "By {name}"
+    "reached": "Reached",
+    "requested": "Goal",
+    "contributors": "Contributors",
+    "time_left": "Time left",
+    "contribute": "Contribute",
+    "by_studio_label": "Project author",
+    "rewards_title": "Rewards"
   },
   "Studio": {
     "become_title": "Become a studio",
@@ -129,6 +136,9 @@
     "label_tagline": "Tagline",
     "label_description": "Description",
     "label_cover": "Cover image URL",
+    "label_gallery": "Gallery images",
+    "placeholder_gallery": "https://example.com/image1.jpg\nhttps://example.com/image2.jpg",
+    "gallery_hint": "One URL per line. These images will appear in the project carousel.",
     "label_category": "Category",
     "label_goal": "Goal amount",
     "label_ends_at": "Ends at",
@@ -148,6 +158,8 @@
     "placeholder_price": "Price",
     "placeholder_limit": "Limit (blank = unlimited)",
     "placeholder_reward": "Reward description",
+    "placeholder_image_url": "Image URL (optional)",
+    "placeholder_delivery_date": "Expected delivery (e.g. May 2027)",
     "add": "Add tier",
     "save": "Save",
     "cancel": "Cancel"
@@ -173,5 +185,27 @@
     "success": "Thank you for backing this project!",
     "sold_out": "Sold out",
     "error_generic": "Could not complete your pledge."
+  },
+  "Contribute": {
+    "meta_title": "Contribute",
+    "meta_description": "Back this project by choosing a reward",
+    "title": "Contribute to this project",
+    "subtitle": "Fill in your details below to complete your contribution.",
+    "back_to_project": "← Back to {title}",
+    "sign_in_required": "You need to sign in to contribute to this project.",
+    "sign_in": "Sign in",
+    "label_name": "Full name",
+    "label_email": "Email address",
+    "label_address": "Delivery address",
+    "label_notes": "Additional notes (optional)",
+    "placeholder_address": "Street, city, postal code, country",
+    "placeholder_notes": "Any special requests or information for the studio",
+    "submit": "Complete contribution",
+    "submitting": "Processing...",
+    "selected_reward": "Selected reward",
+    "success_title": "Thank you for your contribution!",
+    "success_message": "Your pledge has been recorded. The studio will be in touch with details about your reward.",
+    "back_to_project": "Back to project",
+    "error_generic": "Could not complete your contribution."
   }
 }

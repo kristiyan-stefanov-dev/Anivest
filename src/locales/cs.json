@@ -66,9 +66,16 @@
   },
   "ProjectDetail": {
     "meta_title": "Projekt",
+    "about_tab": "O projektu",
+    "about_title": "O projektu",
     "about_funds": "Jak se využijí prostředky",
-    "tiers_title": "Podpořte tento projekt",
-    "by_studio": "Od {name}"
+    "reached": "Vybráno",
+    "requested": "Cíl",
+    "contributors": "Přispěvatelé",
+    "time_left": "Zbývající čas",
+    "contribute": "Přispět",
+    "by_studio_label": "Autor projektu",
+    "rewards_title": "Odměny"
   },
   "Studio": {
     "become_title": "Stát se studiem",
@@ -129,6 +136,9 @@
     "label_tagline": "Slogan",
     "label_description": "Popis",
     "label_cover": "URL obrázku",
+    "label_gallery": "Obrázky galerie",
+    "placeholder_gallery": "https://priklad.cz/obrazek1.jpg\nhttps://priklad.cz/obrazek2.jpg",
+    "gallery_hint": "Jedna URL na řádek. Tyto obrázky se zobrazí v karuselu projektu.",
     "label_category": "Kategorie",
     "label_goal": "Cílová částka",
     "label_ends_at": "Končí dne",
@@ -148,6 +158,8 @@
     "placeholder_price": "Cena",
     "placeholder_limit": "Limit (prázdné = neomezené)",
     "placeholder_reward": "Popis odměny",
+    "placeholder_image_url": "URL obrázku (nepovinné)",
+    "placeholder_delivery_date": "Očekávané doručení (např. květen 2027)",
     "add": "Přidat úroveň",
     "save": "Uložit",
     "cancel": "Zrušit"
@@ -173,5 +185,27 @@
     "success": "Děkujeme za podporu tohoto projektu!",
     "sold_out": "Vyprodáno",
     "error_generic": "Pledge se nepodařilo dokončit."
+  },
+  "Contribute": {
+    "meta_title": "Přispět",
+    "meta_description": "Podpořte tento projekt výběrem odměny",
+    "title": "Přispějte na tento projekt",
+    "subtitle": "Vyplňte své údaje a dokončete příspěvek.",
+    "back_to_project": "← Zpět na {title}",
+    "sign_in_required": "Pro přispění na tento projekt se musíte přihlásit.",
+    "sign_in": "Přihlásit se",
+    "label_name": "Celé jméno",
+    "label_email": "E-mailová adresa",
+    "label_address": "Dodací adresa",
+    "label_notes": "Další poznámky (nepovinné)",
+    "placeholder_address": "Ulice, město, PSČ, země",
+    "placeholder_notes": "Jakékoliv speciální požadavky nebo informace pro studio",
+    "submit": "Dokončit příspěvek",
+    "submitting": "Zpracování...",
+    "selected_reward": "Vybraná odměna",
+    "success_title": "Děkujeme za váš příspěvek!",
+    "success_message": "Váš příspěvek byl zaznamenán. Studio vás bude kontaktovat s podrobnostmi o odměně.",
+    "back_to_project": "Zpět na projekt",
+    "error_generic": "Příspěvek se nepodařilo dokončit."
   }
 }
