@@ -91,6 +91,8 @@ export const tiers = pgTable('tiers', {
   limitedQuantity: integer('limited_quantity'),
   claimedQuantity: integer('claimed_quantity').notNull().default(0),
   reward: text('reward').notNull().default(''),
+  imageUrl: varchar('image_url', { length: 512 }).notNull().default(''),
+  deliveryDate: varchar('delivery_date', { length: 64 }).notNull().default(''),
   displayOrder: integer('display_order').notNull().default(0),
   active: boolean('active').notNull().default(true),
   createdAt: timestamp('created_at', { mode: 'date' }).defaultNow().notNull(),
@@ -107,6 +109,9 @@ export const pledges = pgTable('pledges', {
     .references(() => projects.id, { onDelete: 'cascade' }),
   backerClerkUserId: varchar('backer_clerk_user_id', { length: 255 }).notNull(),
   backerName: varchar('backer_name', { length: 128 }).notNull().default('Anonymous'),
+  email: varchar('email', { length: 256 }).notNull().default(''),
+  address: text('address').notNull().default(''),
+  notes: text('notes').notNull().default(''),
   amount: integer('amount').notNull(),
   currency: varchar('currency', { length: 8 }).notNull().default('USD'),
   reward: text('reward').notNull().default(''),
@@ -175,3 +180,17 @@ export const projectBlocks = pgTable('project_blocks', {
 });
 
 export type ProjectBlock = typeof projectBlocks.$inferSelect;
+
+/** Gallery images attached to a project, displayed in the carousel. */
+export const projectImages = pgTable('project_images', {
+  id: serial('id').primaryKey(),
+  projectId: integer('project_id')
+    .notNull()
+    .references(() => projects.id, { onDelete: 'cascade' }),
+  imageUrl: varchar('image_url', { length: 512 }).notNull(),
+  altText: varchar('alt_text', { length: 256 }).notNull().default(''),
+  displayOrder: integer('display_order').notNull().default(0),
+  createdAt: timestamp('created_at', { mode: 'date' }).defaultNow().notNull(),
+});
+
+export type ProjectImage = typeof projectImages.$inferSelect;

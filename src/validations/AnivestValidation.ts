@@ -38,6 +38,8 @@ export const TierValidation = z.object({
   currency: z.string().length(3).default('USD'),
   limitedQuantity: z.number().int().min(1).optional().nullable(),
   reward: z.string().max(2000).default(''),
+  imageUrl: z.url().max(512).or(z.literal('')).optional().default(''),
+  deliveryDate: z.string().max(64).default(''),
   displayOrder: z.number().int().min(0).default(0),
   active: z.boolean().default(true),
 });
@@ -53,4 +55,12 @@ export const LedgerValidation = z.object({
 export const PledgeValidation = z.object({
   tierId: z.number().int().positive(),
   backerName: z.string().max(128).optional().default('Anonymous'),
+});
+
+export const ContributeFormValidation = z.object({
+  tierId: z.number().int().positive(),
+  backerName: z.string().min(1).max(128),
+  email: z.email().max(256),
+  address: z.string().min(1).max(2000),
+  notes: z.string().max(2000).default(''),
 });

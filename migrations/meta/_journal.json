@@ -15,6 +15,13 @@
       "when": 1784161475379,
       "tag": "0001_tranquil_santa_claus",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1784700000000,
+      "tag": "0002_add_gallery_and_pledge_details",
+      "breakpoints": true
     }
   ]
 }
